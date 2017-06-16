@@ -1,6 +1,8 @@
 var Eut = function(){
   this.name_set;
   this.type_of;
+  this.truthy_var;
+  this.falsy_var;
   this.equal1;
   this.equal2;
   this.greater;
@@ -12,12 +14,17 @@ var Eut = function(){
   this.multi_eq;
   this.divide_eq;
   this.modulo_eq;
+  this.contain_arr;
   this.equal;
   this.log;
 }
 
+// Eut Prototypes : ------------------------------------------------------------------------------
+
 Eut.prototype.name = function(name) { this.name_set = name; return this; }
 Eut.prototype.type = function(type) { this.type_of = typeof type; return this; }
+Eut.prototype.truthy = function(truthy) {this.truthy_var = truthy; return this; }
+Eut.prototype.falsy= function(falsy) {this.falsy_var = falsy; return this; }
 Eut.prototype.eq1 = function(equal1) { this.equal1 = equal1; return this; }
 Eut.prototype.eq2 = function(equal2) { this.equal2 = equal2; return this; }
 
@@ -32,7 +39,7 @@ Eut.prototype.great = function (compared, to) {
 }
 
 Eut.prototype.great_eq = function (compared, to) {
-  if (compared > to) {
+  if (compared >= to) {
     this.greater_equal = true;
   }
   else {
@@ -42,7 +49,7 @@ Eut.prototype.great_eq = function (compared, to) {
 }
 
 Eut.prototype.low = function (compared, to) {
-  if (compared > to) {
+  if (compared < to) {
     this.lower = true;
   }
   else {
@@ -52,7 +59,7 @@ Eut.prototype.low = function (compared, to) {
 }
 
 Eut.prototype.low_eq = function (compared, to) {
-  if (compared > to) {
+  if (compared <= to) {
     this.lower_equal = true;
   }
   else {
@@ -63,17 +70,38 @@ Eut.prototype.low_eq = function (compared, to) {
 
 Eut.prototype.sum = function(){
   var temp = 0;
-  for (var i=0; i < arguments.length; i++){
-    temp += arguments[i]
+  if (arguments.length > 1) {
+    for (var i=0; i < arguments.length; i++){
+      temp += arguments[i]
+     }
+  }
+  else if (arguments.length = 1 && typeof arguments[0] == 'object'){
+      for (var i=0; i < arguments[0].length; i++){
+        temp += arguments[0][i]
+     }
+  }
+  else if (arguments.length = 1 && typeof arguments[0] == 'number'){
+    temp = arguments[0];
   }
   this.sum_eq = temp;
   return this;
 }
 
+
 Eut.prototype.remain= function(){
   var temp = 0;
-  for (var i=0; i < arguments.length; i++){
-    temp -= arguments[i]
+  if (arguments.length > 1) {
+    for (var i=0; i < arguments.length; i++){
+      temp -= arguments[i]
+     }
+  }
+  else if (arguments.length = 1 && typeof arguments[0] == 'object'){
+      for (var i=0; i < arguments[0].length; i++){
+        temp -= arguments[0][i]
+     }
+  }
+  else if (arguments.length = 1 && typeof arguments[0] == 'number'){
+    temp = arguments[0];
   }
   this.remain_eq = temp;
   return this;
@@ -81,39 +109,83 @@ Eut.prototype.remain= function(){
 
 Eut.prototype.multi= function(){
   var temp = 1;
-  for (var i=0; i < arguments.length; i++){
-    temp *= arguments[i]
+  if (arguments.length > 1) {
+    for (var i=0; i < arguments.length; i++){
+      temp *= arguments[i]
+     }
+  }
+  else if (arguments.length = 1 && typeof arguments[0] == 'object'){
+      for (var i=0; i < arguments[0].length; i++){
+        temp *= arguments[0][i]
+     }
+  }
+  else if (arguments.length = 1 && typeof arguments[0] == 'number'){
+    temp = arguments[0];
   }
   this.multi_eq = temp;
   return this;
 }
 
 Eut.prototype.divide= function(){
-  var temp = arguments[0];
-  if (arguments.length > 1){
+  var temp = 0;
+  if (arguments.length > 1) {
+    temp = arguments[0]
     for (var i=1; i < arguments.length; i++){
       temp /= arguments[i]
-    }
-    this.divide_eq = temp;
+     }
   }
-  else {
-    this.divide_eq = temp;
+  else if (arguments.length = 1 && typeof arguments[0] == 'object'){
+    temp = arguments[0[0];]
+      for (var i=1; i < arguments[0].length; i++){
+        temp /= arguments[0][i]
+     }
   }
+  else if (arguments.length = 1 && typeof arguments[0] == 'number'){
+    temp = arguments[0];
+  }
+  this.divide_eq = temp;
   return this;
 }
 
 Eut.prototype.modulo= function(){
-  var temp = arguments[0];
-  if (arguments.length > 1){
-    for (var i=1; i < arguments.length; i++){
+  var temp = 0;
+  if (arguments.length > 1) {
+    for (var i=0; i < arguments.length; i++){
       temp %= arguments[i]
-    }
-    this.modulo_eq = temp;
+     }
   }
-  else {
-    this.modulo_eq = temp;
+  else if (arguments.length = 1 && typeof arguments[0] == 'object'){
+      for (var i=0; i < arguments[0].length; i++){
+        temp %= arguments[0][i]
+     }
   }
+  else if (arguments.length = 1 && typeof arguments[0] == 'number'){
+    temp = arguments[0];
+  }
+  this.modulo_eq = temp;
   return this;
+}
+
+Eut.prototype.contain = function(arr,num) {
+  var temp = 0;
+  if (arr.length > 1) {
+    for (var i=0; i < arr.length; i++){
+      if(arr[i] === num){
+        return this.contain_arr = true;
+      }
+      else {
+        return this.contain_arr = false;
+      }
+     }
+  }
+  else if (arr.length == 1){
+       if(arr[0] === num){
+        return this.contain_arr = true;
+      }
+      else {
+        return this.contain_arr = false;
+      }
+  }
 }
 
 Eut.prototype.eq = function(equal){
@@ -121,15 +193,54 @@ Eut.prototype.eq = function(equal){
   return this;
 }
 
+// Logging the results : -----------------------------------------------------------------
+
 Eut.prototype.log = function(){
 
   // testing equals
   if (this.equal1 !== undefined && this.equal2 !== undefined) {
-    if (this.equal1 === this.equal2){
+    if (typeof this.equal1 === 'object' && typeof this.equal2 === 'object' && Object.keys(this.equal1).length === Object.keys(this.equal2).length){
+      var temp = 1;
+      for (var i = 0; i < Object.keys(this.equal1).length; i++){
+        if (Object.keys(this.equal1)[i] === Object.keys(this.equal2)[i] && Object.values(this.equal1)[i] ===  Object.values(this.equal2)[i]){
+          temp *= 1;
+        }
+        else {
+          temp *= 0;
+        }
+      }
+      if (temp === 1){
+        console.log(this.name_set + ' :  eq1().eq() :  ' + 'PASSED');
+      }
+      else {
+        console.log(this.name_set + ' :  eq1().eq() :  ' + 'FAILED');
+      }
+    }
+    else if (this.equal1 === this.equal2){
       console.log(this.name_set + ' :  eq1().eq() :  ' + 'PASSED');
     }
     else {
       console.log(this.name_set + ' :  eq1().eq() :  ' + 'FAILED');
+    }
+  }
+
+  // testing if truthy
+  if (this.truthy_var !== undefined) {
+    if (!!this.truthy_var){
+      console.log(this.name_set + ' : truthy() :  ' + 'PASSED');
+    }
+    else {
+      console.log(this.name_set + ' : truthy() :  ' + 'FAILED');
+   }
+  }
+
+   // testing if falsy
+  if (this.falsy_var !== undefined) {
+    if (!(!!this.falsy_var)){
+      console.log(this.name_set + ' : falsy() :  ' + 'PASSED');
+    }
+    else {
+      console.log(this.name_set + ' : falsy() :  ' + 'FAILED');
     }
   }
 
@@ -233,7 +344,7 @@ Eut.prototype.log = function(){
     }
   }
 
-  // Reset ALL
+  // Reset ALL : ------------------------------------------------------------------------------
   for (var prop in this){
     if (this.hasOwnProperty(prop)){
       this[prop] = undefined;
@@ -241,6 +352,8 @@ Eut.prototype.log = function(){
   }
   return this;
 }
+
+// Exporting the constructor instance : ------------------------------------------
 
 const  eut = new Eut();
 //export default eut;
