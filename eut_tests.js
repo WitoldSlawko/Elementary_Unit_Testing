@@ -135,7 +135,7 @@ Eut.prototype.divide= function(){
      }
   }
   else if (arguments.length = 1 && typeof arguments[0] == 'object'){
-    temp = arguments[0[0];]
+    temp = arguments[0][0];
       for (var i=1; i < arguments[0].length; i++){
         temp /= arguments[0][i]
      }
@@ -202,7 +202,7 @@ Eut.prototype.log = function(){
     if (typeof this.equal1 === 'object' && typeof this.equal2 === 'object' && Object.keys(this.equal1).length === Object.keys(this.equal2).length){
       var temp = 1;
       for (var i = 0; i < Object.keys(this.equal1).length; i++){
-        if (Object.keys(this.equal1)[i] === Object.keys(this.equal2)[i] && Object.values(this.equal1)[i] ===  Object.values(this.equal2)[i]){
+        if ((Object.keys(this.equal1)[i] === Object.keys(this.equal2)[i]) && (Object.values(this.equal1)[i] ===  Object.values(this.equal2)[i])){
           temp *= 1;
         }
         else {
