@@ -15,6 +15,8 @@ var Eut = function(){
   this.divide_eq;
   this.modulo_eq;
   this.contain_arr;
+  this.contain_prop;
+  this.contain_val;
   this.equal;
   this.log;
 }
@@ -166,7 +168,7 @@ Eut.prototype.modulo= function(){
   return this;
 }
 
-Eut.prototype.contain_var_in_array = function(num,arr) {
+Eut.prototype.contain_var_arr = function(num,arr) {
   var temp = 0;
   if (arr.length > 1) {
     for (var i=0; i < arr.length; i++){
@@ -192,6 +194,44 @@ Eut.prototype.contain_var_in_array = function(num,arr) {
         this.contain_arr = false;
         return this;
       }
+  }
+}
+
+Eut.prototype.contain_prop_obj = function(prop, obj){
+  var temp = 0;
+  for (var property in obj){
+    if (obj.hasOwnProperty(property)){
+      if(property === prop){
+        temp += 1;
+      }
+    }
+  }
+  if (temp !== 0) {
+    this.contain_prop = true;
+    return this;
+  }
+  else {
+    this.contain_prop = false;
+    return this;
+  }
+}
+
+Eut.prototype.contain_val_obj = function(val,obj){
+  var temp = 0;
+  for (var property in obj){
+    if (obj.hasOwnProperty(property)){
+      if(obj[property] === val){
+        temp += 1;
+      }
+    }
+  }
+  if (temp !== 0) {
+    this.contain_val = true;
+    return this;
+  }
+  else {
+    this.contain_val = false;
+    return this;
   }
 }
 
@@ -351,13 +391,33 @@ Eut.prototype.log = function(){
     }
   }
 
-  // testing contain_in_array
+  // testing contain_arr
   if (this.contain_arr !== undefined){
     if (this.contain_arr) {
-      console.log(this.name_set + ' : contain() : ' + 'PASSED');
+      console.log(this.name_set + ' : contain_var_arr() : ' + 'PASSED');
     }
     else {
-      console.log(this.name_set + ' : contain() : ' + 'FAILED');
+      console.log(this.name_set + ' : contain_var_arr() : ' + 'FAILED');
+    }
+  }
+
+  //testing contain_prop_obj
+   if (this.contain_prop !== undefined){
+    if (this.contain_prop) {
+      console.log(this.name_set + ' : contain_prop_obj() : ' + 'PASSED');
+    }
+    else {
+      console.log(this.name_set + ' : contain_prop_obj() : ' + 'FAILED');
+    }
+  }
+
+   //testing contain_val_obj
+   if (this.contain_val !== undefined){
+    if (this.contain_val) {
+      console.log(this.name_set + ' : contain_val_obj() : ' + 'PASSED');
+    }
+    else {
+      console.log(this.name_set + ' : contain_val_obj() : ' + 'FAILED');
     }
   }
 

@@ -36,8 +36,8 @@ eut.name('two arrays 2').eq1([1,345,'abc']).eq2([1,true,'abc']).log();
 
 eut.name('nothing').falsy(0).log();
 
-eut.name('does it contain?').contain_var_in_array(3,[2,3,4]).log();
+eut.name('does it contain?').contain_var_arr(3,[2,3,4]).log();
 
-//eut.name('val in obj').contain(obj1,true).log();
+eut.name('prop in object').contain_prop_obj('prop1',obj1).log();
 
-//console.log(!!0);
+eut.name('val in object').contain_val_obj(true,obj1).log();
