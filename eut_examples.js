@@ -41,3 +41,5 @@ eut.name('does it contain?').contain_var_arr(3,[2,3,4]).log();
 eut.name('prop in object').contain_prop_obj('prop1',obj1).log();
 
 eut.name('val in object').contain_val_obj(true,obj1).log();
+
+eut.name('testing regular expresions').reg_exp('ab','01abcdef').log();

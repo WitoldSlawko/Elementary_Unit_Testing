@@ -17,6 +17,7 @@ var Eut = function(){
   this.contain_arr;
   this.contain_prop;
   this.contain_val;
+  this.reg_exp_eq;
   this.equal;
   this.log;
 }
@@ -235,6 +236,11 @@ Eut.prototype.contain_val_obj = function(val,obj){
   }
 }
 
+Eut.prototype.reg_exp = function(str,re) {
+  this.reg_exp_eq = new RegExp(str).test(re);
+  return this;
+}
+
 Eut.prototype.eq = function(equal){
   this.equal = equal;
   return this;
@@ -401,7 +407,7 @@ Eut.prototype.log = function(){
     }
   }
 
-  //testing contain_prop_obj
+  // testing contain_prop_obj
    if (this.contain_prop !== undefined){
     if (this.contain_prop) {
       console.log(this.name_set + ' : contain_prop_obj() : ' + 'PASSED');
@@ -411,13 +417,23 @@ Eut.prototype.log = function(){
     }
   }
 
-   //testing contain_val_obj
+   // testing contain_val_obj
    if (this.contain_val !== undefined){
     if (this.contain_val) {
       console.log(this.name_set + ' : contain_val_obj() : ' + 'PASSED');
     }
     else {
       console.log(this.name_set + ' : contain_val_obj() : ' + 'FAILED');
+    }
+  }
+
+  // testing regular expression
+  if (this.reg_exp_eq !== undefined){
+    if (this.reg_exp_eq) {
+      console.log(this.name_set + ' : reg_exp() : ' + 'PASSED');
+    }
+    else {
+      console.log(this.name_set + ' : reg_exp() : ' + 'FAILED');
     }
   }
 
