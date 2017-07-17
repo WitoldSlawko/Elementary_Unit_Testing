@@ -26,7 +26,7 @@ eut.name('another adding').sum(2,4).eq(6).log();
 eut.name('single').sum(2).eq(2).log();
 
 var obj1 = { prop1: 'val', prop2: 123, props3: true};
-var obj2 = { prop1: 'val', prop2: 123, props3: true};
+var obj2 = { prop1: 'val', prop2: 123, props3: false};
 
 eut.name('compare two objects').eq1(obj1).eq2(obj2).log();
 
@@ -36,4 +36,8 @@ eut.name('two arrays 2').eq1([1,345,'abc']).eq2([1,true,'abc']).log();
 
 eut.name('nothing').falsy(0).log();
 
-console.log(!!0);
+eut.name('does it contain?').contain_var_in_array(3,[2,3,4]).log();
+
+//eut.name('val in obj').contain(obj1,true).log();
+
+//console.log(!!0);

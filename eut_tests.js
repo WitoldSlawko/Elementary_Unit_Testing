@@ -166,24 +166,31 @@ Eut.prototype.modulo= function(){
   return this;
 }
 
-Eut.prototype.contain = function(arr,num) {
+Eut.prototype.contain_var_in_array = function(num,arr) {
   var temp = 0;
   if (arr.length > 1) {
     for (var i=0; i < arr.length; i++){
       if(arr[i] === num){
-        return this.contain_arr = true;
-      }
-      else {
-        return this.contain_arr = false;
+        temp += 1;
       }
      }
+    if (temp !== 0){
+        this.contain_arr = true;
+        return this;
+      }
+    else {
+        this.contain_arr = false;
+        return this;
+    }
   }
   else if (arr.length == 1){
        if(arr[0] === num){
-        return this.contain_arr = true;
+        this.contain_arr = true;
+        return this;
       }
       else {
-        return this.contain_arr = false;
+        this.contain_arr = false;
+        return this;
       }
   }
 }
@@ -202,7 +209,7 @@ Eut.prototype.log = function(){
     if (typeof this.equal1 === 'object' && typeof this.equal2 === 'object' && Object.keys(this.equal1).length === Object.keys(this.equal2).length){
       var temp = 1;
       for (var i = 0; i < Object.keys(this.equal1).length; i++){
-        if ((Object.keys(this.equal1)[i] === Object.keys(this.equal2)[i]) && (Object.values(this.equal1)[i] ===  Object.values(this.equal2)[i])){
+        if ((this.equal1[Object.keys(this.equal1)[i]] === this.equal2[Object.keys(this.equal2)[i]]) /*&& (Object.values(this.equal1)[i] ===  Object.values(this.equal2)[i])*/){
           temp *= 1;
         }
         else {
@@ -210,10 +217,10 @@ Eut.prototype.log = function(){
         }
       }
       if (temp === 1){
-        console.log(this.name_set + ' :  eq1().eq() :  ' + 'PASSED');
+        console.log(this.name_set + ' :  eq1().eq2() :  ' + 'PASSED');
       }
       else {
-        console.log(this.name_set + ' :  eq1().eq() :  ' + 'FAILED');
+        console.log(this.name_set + ' :  eq1().eq2() :  ' + 'FAILED');
       }
     }
     else if (this.equal1 === this.equal2){
@@ -341,6 +348,16 @@ Eut.prototype.log = function(){
     }
     else {
        console.log(this.name_set + ' :  modulo() :  ' + 'FAILED');
+    }
+  }
+
+  // testing contain_in_array
+  if (this.contain_arr !== undefined){
+    if (this.contain_arr) {
+      console.log(this.name_set + ' : contain() : ' + 'PASSED');
+    }
+    else {
+      console.log(this.name_set + ' : contain() : ' + 'FAILED');
     }
   }
 
