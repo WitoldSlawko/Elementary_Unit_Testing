@@ -4,7 +4,8 @@ Single JS file for making basic unit tests based on goods of object prototyping.
 ### https://www.npmjs.com/package/eut
 
 </br>
-# Below test file eut_test_examples.js: ...
+# Below test file: eut_test_examples.js: ...
+# eut_test_examples.js
 var eut = require('./eut_tests.js');</br>
 eut.name('adding').sum(1,4).eq(7).log();</br>
 eut.name('guess the type').type(123).eq('number').log();</br>
@@ -30,6 +31,7 @@ eut.name('val in object').contain_val_obj(true,obj1).log();</br>
 eut.name('testing regular expresions').reg_exp('ab','01abcdef').log();</br>
 </br>
 # Will provide this log of console: ...
+# node eut_test_examples.js
 adding :  sum() :  FAILED</br>
 guess the type :  type() :  PASSED</br>
 compare if equal :  eq1().eq() :  PASSED</br>
