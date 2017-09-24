@@ -1,0 +1,21 @@
+{
+  "name": "eut",
+  "version": "1.0.1",
+  "description": "Single JS file for making basic unit tests based on goods of object prototyping.",
+  "main": "eut_tests.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/WitoldSlawko/Elementary_Unit_Testing.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/WitoldSlawko/Elementary_Unit_Testing/issues"
+  },
+  "homepage": "https://github.com/WitoldSlawko/Elementary_Unit_Testing#readme",
+  "dependencies": {}
+}
